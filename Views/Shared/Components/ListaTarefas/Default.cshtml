@@ -1,0 +1,41 @@
+﻿@model IEnumerable<TodoListDesafio.Models.Tarefas>
+
+@{ 
+    Layout = null;
+
+}
+
+<div class="border border-light shadow rounded p-4">
+    @if (Model.Count() > 0)
+    {
+    <ul class="list-group">
+        @foreach (var item in Model)
+        {
+            <li class="list-group-item"
+                >
+                <div class="row">
+                    <div class="col-2">
+                        <span class="badge badge-info"> @Html.DisplayFor(modelitem => item.Horario)</span>
+                    </div>
+                    <div class="col-4">
+                        @Html.DisplayFor(modelitem => item.Nome)
+                    </div>
+                    <div class="col-3">
+                        @Html.DisplayFor(modelitem => item.Status)
+                    </div>
+                    <div class="col-3">
+                        <a asp-action="AtualizarTarefa" asp-route-Tarefa_ID="@item.Tarefa_id" class="btn btn-sm btn-outline-primary rounded-circle"> Atualizar<i class="fa fa-pencil-square-o"></i></a>
+                        <a class="btn btn-sm btn-outline-danger rounded-circle" onclick="ConfirmaExclusao(@item.Tarefa_id, @item.Nome)"><i class="fa fa-times-circle">Excluir</i></a>
+
+                    </div>
+                </div>
+            </li>
+        }
+
+    </ul>
+    }
+    else
+    {
+<p class="alert alert-warning"> Sem tarefas cadastradas</p>
+    }
+</div>
